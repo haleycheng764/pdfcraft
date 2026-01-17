@@ -340,6 +340,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the AGPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
+## 🤝 Acknowledgements
+
+PDFCraft stands on the shoulders of giants. We gratefully acknowledge **[BentoPDF](https://github.com/alam00000/bentopdf)** for their pioneering work in privacy-first, client-side PDF tools.
+
+Their project served as a significant inspiration and reference for our core logic. While PDFCraft has been re-engineered for the **Next.js** ecosystem and extends functionality with unique features like the *Workflow Editor*, we deeply respect the foundation laid by the BentoPDF team.
 ---
 
 <div align="center">
