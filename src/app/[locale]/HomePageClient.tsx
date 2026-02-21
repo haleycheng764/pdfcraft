@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { ArrowRight, Zap, Wrench, Lock, Sparkles, Edit, FileImage, FolderOpen, Settings, ShieldCheck, Star } from 'lucide-react';
+import { ArrowRight, Zap, Wrench, Edit, FileImage, FolderOpen, Settings, ShieldCheck } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ToolGrid } from '@/components/tools/ToolGrid';
@@ -86,68 +86,135 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
       <Header locale={locale} />
 
       <main id="main-content" className="flex-1 relative" tabIndex={-1}>
-        {/* Hero Section */}
+        {/* Hero Section - Recraft-style two-column layout */}
         <section
-          className="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28"
+          className="relative overflow-hidden pt-24 pb-16 lg:pt-28 lg:pb-24 bg-white"
           aria-labelledby="hero-title"
         >
-          {/* Animated Background Blobs */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[hsl(var(--color-primary)/0.2)] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-[hsl(var(--color-accent)/0.2)] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-            <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-[hsl(var(--color-secondary)/0.3)] rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
-          </div>
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[500px]">
+              {/* Left Column - Content */}
+              <div className="order-2 lg:order-1">
+                {/* Breadcrumbs */}
+                <nav className="text-sm text-[hsl(var(--color-muted-foreground))] mb-6" aria-label="Breadcrumb">
+                  <Link href={`/${locale}`} className="hover:text-black transition-colors">
+                    {t('common.navigation.home')}
+                  </Link>
+                  <span className="mx-2">/</span>
+                  <span className="text-black font-medium">{t('home.hero.title')}</span>
+                </nav>
 
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              {/* Brand Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-[hsl(var(--color-background)/0.8)] border border-[hsl(var(--color-primary)/0.2)] shadow-sm backdrop-blur-md transition-all hover:bg-[hsl(var(--color-background))]">
-                <Sparkles className="h-4 w-4 text-[hsl(var(--color-primary))]" aria-hidden="true" />
-                <span className="text-sm font-medium text-[hsl(var(--color-primary))]">
-                  {t('common.brand')}
-                </span>
+                {/* Hero Title */}
+                <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black mb-6 leading-[1.1]">
+                  {t('home.hero.title')}{' '}
+                  <span className="text-[hsl(var(--color-primary))]">{t('home.hero.highlight')}</span>
+                </h1>
+
+                {/* Hero Subtitle */}
+                <p className="text-lg text-[hsl(var(--color-muted-foreground))] mb-8 max-w-xl leading-relaxed">
+                  {t('home.hero.subtitle')}
+                </p>
+
+                {/* CTA Area - Input + Button style like Recraft */}
+                <div className="flex flex-col sm:flex-row gap-3 max-w-xl">
+                  <Link
+                    href={`/${locale}/tools`}
+                    className="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-[hsl(var(--color-border))] bg-[hsl(var(--color-muted)/0.5)] hover:border-[hsl(var(--color-primary)/0.5)] hover:bg-[hsl(var(--color-muted))] transition-colors"
+                  >
+                    <span className="text-sm text-[hsl(var(--color-muted-foreground))] truncate">
+                      {t('home.hero.ctaPlaceholder') || 'Merge, compress, convert PDF...'}
+                    </span>
+                  </Link>
+                  <Link href={`/${locale}/tools`} className="flex-shrink-0">
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full sm:w-auto h-12 px-8 bg-[hsl(var(--color-primary))] hover:bg-[hsl(var(--color-primary-hover))] text-white rounded-lg font-medium"
+                    >
+                      {t('home.hero.cta')}
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Trust badge */}
+                <p className="mt-8 text-sm text-[hsl(var(--color-muted-foreground))]">
+                  {t('home.hero.trustedBy') || 'Trusted by users worldwide'} · {t('common.footer.privacyBadge')}
+                </p>
               </div>
 
-              {/* Hero Title */}
-              <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                <span className="text-[hsl(var(--color-foreground))]">{t('home.hero.title')} </span>
-                <span className="text-gradient block mt-1 pb-2">{t('home.hero.highlight')}</span>
-              </h1>
+              {/* Right Column - Hero Visual + Examples Card */}
+              <div className="order-1 lg:order-2 relative">
+                <div className="relative">
+                  {/* Main hero image/visual */}
+                  <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[hsl(var(--color-muted))] via-[hsl(var(--color-muted)/0.8)] to-[hsl(var(--color-primary)/0.1)] border border-[hsl(var(--color-border))] overflow-hidden flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-4 p-8 text-center">
+                      <div className="flex gap-3">
+                        <div className="w-16 h-20 rounded-lg bg-white/90 shadow-sm border border-[hsl(var(--color-border))] flex items-center justify-center">
+                          <FileImage className="h-8 w-8 text-[hsl(var(--color-primary))]" />
+                        </div>
+                        <div className="w-16 h-20 rounded-lg bg-white/90 shadow-sm border border-[hsl(var(--color-border))] flex items-center justify-center">
+                          <Edit className="h-8 w-8 text-[hsl(var(--color-primary))]" />
+                        </div>
+                        <div className="w-16 h-20 rounded-lg bg-white/90 shadow-sm border border-[hsl(var(--color-border))] flex items-center justify-center">
+                          <ShieldCheck className="h-8 w-8 text-[hsl(var(--color-primary))]" />
+                        </div>
+                      </div>
+                      <p className="text-sm font-medium text-[hsl(var(--color-muted-foreground))]">
+                        {t('home.hero.visualLabel') || '90+ PDF tools at your fingertips'}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Hero Subtitle */}
-              <p className="text-lg text-[hsl(var(--color-muted-foreground))] mb-8 max-w-2xl mx-auto leading-relaxed">
-                {t('home.hero.subtitle')}
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href={`/${locale}/tools`}>
-                  <Button variant="primary" size="lg" className="h-11 px-8 text-base shadow-lg hover:shadow-primary/25 transition-all hover:-translate-y-0.5">
-                    {t('home.hero.cta')}
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                  </Button>
-                </Link>
-                <div className="flex items-center gap-2 text-sm text-[hsl(var(--color-muted-foreground))] bg-[hsl(var(--color-background)/0.5)] px-4 py-2 rounded-full border border-[hsl(var(--color-border))] backdrop-blur-sm">
-                  <Lock className="h-4 w-4 text-green-500" aria-hidden="true" />
-                  <span>{t('common.footer.privacyBadge')}</span>
+                  {/* Generation examples card - overlay */}
+                  <div className="absolute -bottom-6 left-0 right-0 mx-4 lg:mx-0 lg:right-0 lg:left-auto lg:w-[85%] bg-white rounded-xl border border-[hsl(var(--color-border))] shadow-lg p-4">
+                    <h3 className="text-sm font-semibold text-black mb-3">
+                      {t('home.hero.toolExamples') || 'Tool examples'}
+                    </h3>
+                    <div className="grid grid-cols-4 gap-2">
+                      {popularTools.slice(0, 4).map((tool) => {
+                        const content = localizedToolContent?.[tool.id];
+                        const title = content?.title || tool.id.replace(/-/g, ' ');
+                        return (
+                          <Link
+                            key={tool.id}
+                            href={`/${locale}/tools/${tool.slug}`}
+                            className="flex flex-col items-center gap-1.5 p-2 rounded-lg hover:bg-[hsl(var(--color-muted)/0.5)] transition-colors group"
+                          >
+                            <div className="w-12 h-12 rounded-lg bg-[hsl(var(--color-primary)/0.1)] flex items-center justify-center group-hover:bg-[hsl(var(--color-primary)/0.2)] transition-colors">
+                              <FileImage className="h-5 w-5 text-[hsl(var(--color-primary))]" />
+                            </div>
+                            <span className="text-xs font-medium text-black text-center line-clamp-2">
+                              {title}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                    <Link
+                      href={`/${locale}/tools`}
+                      className="mt-3 block text-xs text-[hsl(var(--color-primary))] hover:underline font-medium"
+                    >
+                      {t('home.hero.browseAll') || 'Browse all tools →'}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-12 relative z-20" aria-label="Features">
+        {/* Features Section - Clean cards */}
+        <section className="py-16 bg-white" aria-label="Features">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
-                  <Card key={index} className="p-6 text-center glass-card border-0 hover:-translate-y-1 transition-transform duration-300" hover={false}>
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[hsl(var(--color-primary)/0.1)] mb-4 text-[hsl(var(--color-primary))]">
-                      <Icon className={`h-6 w-6 ${feature.color}`} aria-hidden="true" />
+                  <Card key={index} className="p-6 border border-[hsl(var(--color-border))] bg-white rounded-xl hover:shadow-md transition-all" hover={false}>
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[hsl(var(--color-primary)/0.1)] mb-4">
+                      <Icon className={`h-6 w-6 text-[hsl(var(--color-primary))]`} aria-hidden="true" />
                     </div>
-                    <h3 className="text-lg font-bold text-[hsl(var(--color-foreground))] mb-2">
+                    <h3 className="text-lg font-bold text-black mb-2">
                       {t(feature.titleKey)}
                     </h3>
                     <p className="text-sm text-[hsl(var(--color-muted-foreground))] leading-relaxed">
@@ -161,16 +228,10 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
         </section>
 
         {/* Popular Tools Section */}
-        <section className="py-16 bg-[hsl(var(--color-muted)/0.5)]" aria-labelledby="popular-tools-heading">
+        <section className="py-16 bg-[hsl(var(--color-muted)/0.3)]" aria-labelledby="popular-tools-heading">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-[hsl(var(--color-primary)/0.1)] border border-[hsl(var(--color-primary)/0.2)]">
-                <Star className="h-4 w-4 text-[hsl(var(--color-primary))]" aria-hidden="true" />
-                <span className="text-sm font-medium text-[hsl(var(--color-primary))]">
-                  {t('home.popularTools.badge')}
-                </span>
-              </div>
-              <h2 id="popular-tools-heading" className="text-3xl font-bold text-[hsl(var(--color-foreground))] mb-3">
+              <h2 id="popular-tools-heading" className="text-3xl font-bold text-black mb-3">
                 {t('home.popularTools.title')}
               </h2>
               <p className="text-[hsl(var(--color-muted-foreground))] max-w-2xl mx-auto text-base">
@@ -185,11 +246,11 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
           </div>
         </section>
 
-        <section className="py-16" aria-labelledby="featured-tools-heading">
+        <section className="py-16 bg-white" aria-labelledby="featured-tools-heading">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
               <div className="max-w-2xl">
-                <h2 id="featured-tools-heading" className="text-2xl font-bold text-[hsl(var(--color-foreground))] mb-2">
+                <h2 id="featured-tools-heading" className="text-2xl font-bold text-black mb-2">
                   {t(`home.categories.${categoryTranslationKeys['organize-manage']}`)}
                 </h2>
                 <p className="text-[hsl(var(--color-muted-foreground))] text-base">
@@ -197,7 +258,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
                 </p>
               </div>
               <Link href={`/${locale}/tools`}>
-                <Button variant="outline" size="sm" className="group">
+                <Button variant="outline" size="sm" className="group border-[hsl(var(--color-border))] text-black hover:bg-[hsl(var(--color-muted))] rounded-lg">
                   {t('common.navigation.tools')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </Button>
@@ -215,7 +276,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
         <section className="py-16 bg-[hsl(var(--color-muted)/0.3)]" aria-labelledby="categories-heading">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 id="categories-heading" className="text-3xl font-bold text-[hsl(var(--color-foreground))] mb-3">
+              <h2 id="categories-heading" className="text-3xl font-bold text-black mb-3">
                 {t('home.categoriesSection.title')}
               </h2>
               <p className="text-[hsl(var(--color-muted-foreground))] max-w-2xl mx-auto text-base">
@@ -236,13 +297,13 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
                     href={`/${locale}/tools?category=${category}`}
                     className="group"
                   >
-                    <Card className="p-5 h-full glass-card hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-[hsl(var(--color-border)/0.6)]">
+                    <Card className="p-5 h-full bg-white border border-[hsl(var(--color-border))] rounded-xl hover:shadow-md hover:border-[hsl(var(--color-primary)/0.3)] transition-all duration-300">
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[hsl(var(--color-primary)/0.1)] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[hsl(var(--color-primary)/0.1)] flex items-center justify-center group-hover:bg-[hsl(var(--color-primary)/0.2)] transition-colors">
                           <Icon className="h-5 w-5 text-[hsl(var(--color-primary))]" aria-hidden="true" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-base text-[hsl(var(--color-foreground))] mb-1 group-hover:text-[hsl(var(--color-primary))] transition-colors">
+                          <h3 className="font-semibold text-base text-black mb-1 group-hover:text-[hsl(var(--color-primary))] transition-colors">
                             {categoryName}
                           </h3>
                           <p className="text-xs text-[hsl(var(--color-muted-foreground))] line-clamp-2 mb-2">
@@ -264,11 +325,11 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
         </section>
 
         {/* Stats Section */}
-        <section className="py-16" aria-label="Statistics">
+        <section className="py-16 bg-white" aria-label="Statistics">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-[hsl(var(--color-border))]">
               <div className="p-4">
-                <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">
+                <div className="text-3xl lg:text-4xl font-bold text-[hsl(var(--color-primary))] mb-1">
                   {allTools.length}+
                 </div>
                 <div className="text-xs font-medium text-[hsl(var(--color-muted-foreground))] uppercase tracking-wider">
@@ -276,7 +337,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">
+                <div className="text-3xl lg:text-4xl font-bold text-[hsl(var(--color-primary))] mb-1">
                   100%
                 </div>
                 <div className="text-xs font-medium text-[hsl(var(--color-muted-foreground))] uppercase tracking-wider">
@@ -284,7 +345,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">
+                <div className="text-3xl lg:text-4xl font-bold text-[hsl(var(--color-primary))] mb-1">
                   9
                 </div>
                 <div className="text-xs font-medium text-[hsl(var(--color-muted-foreground))] uppercase tracking-wider">
@@ -292,7 +353,7 @@ export default function HomePageClient({ locale, localizedToolContent }: HomePag
                 </div>
               </div>
               <div className="p-4">
-                <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">
+                <div className="text-3xl lg:text-4xl font-bold text-[hsl(var(--color-primary))] mb-1">
                   0
                 </div>
                 <div className="text-xs font-medium text-[hsl(var(--color-muted-foreground))] uppercase tracking-wider">

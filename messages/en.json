@@ -44,7 +44,8 @@
       "about": "About",
       "faq": "FAQ",
       "privacy": "Privacy",
-      "contact": "Contact"
+      "contact": "Contact",
+      "tryCraft": "Try PDFCraft"
     },
     "buttons": {
       "upload": "Upload Files",
@@ -427,9 +428,14 @@
   "home": {
     "hero": {
       "title": "Professional PDF Tools",
-      "highlight": "Professional Tools",
-      "subtitle": "Free, private, and powerful PDF processing in your browser",
-      "cta": "Get Started"
+      "highlight": "with PDFCraft",
+      "subtitle": "PDFCraft is a comprehensive suite of PDF tools designed for privacy and performance. All processing happens in your browser—your documents never leave your device.",
+      "cta": "Try for free",
+      "ctaPlaceholder": "Merge, compress, convert PDF...",
+      "trustedBy": "Trusted by users worldwide",
+      "toolExamples": "Tool examples",
+      "browseAll": "Browse all tools →",
+      "visualLabel": "90+ PDF tools at your fingertips"
     },
     "features": {
       "privacy": {

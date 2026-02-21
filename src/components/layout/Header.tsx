@@ -164,24 +164,21 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${scrolled
-        ? 'bg-[hsl(var(--color-background))]/80 backdrop-blur-md border-b border-[hsl(var(--color-border))/0.5] shadow-sm'
-        : 'bg-transparent border-transparent'
-        }`}
+      className="fixed top-0 z-50 w-full bg-white border-b border-[hsl(var(--color-border))] transition-all duration-300"
       role="banner"
     >
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center gap-2">
             <Link
               href={`/${locale}`}
-              className="group flex items-center gap-2.5 text-xl font-bold text-[hsl(var(--color-foreground))] hover:opacity-90 transition-opacity"
+              className="group flex items-center gap-2.5 text-lg font-semibold text-black hover:opacity-80 transition-opacity"
               aria-label={`${t('brand')} - ${t('navigation.home')}`}
             >
-              <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[hsl(var(--color-primary))] to-[hsl(var(--color-accent))] shadow-lg shadow-primary/25 transition-transform group-hover:scale-105">
+              <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-black text-white transition-transform group-hover:opacity-90">
                 <svg
-                  className="h-5 w-5 text-white"
+                  className="h-4 w-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -193,16 +190,15 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
                   <polyline points="14 2 14 8 20 8" />
                 </svg>
               </div>
-              <span className="text-xl tracking-tight" data-testid="brand-name">
+              <span className="tracking-tight" data-testid="brand-name">
                 {t('brand')}
               </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Clean horizontal links */}
           <nav
-            className={`hidden md:flex items-center gap-1 rounded-full border border-[hsl(var(--color-border))/0.4] bg-[hsl(var(--color-background))/0.5] p-1.5 backdrop-blur-sm shadow-sm transition-all duration-300 ${isSearchOpen ? 'opacity-0 translate-y-[-10px] pointer-events-none' : 'opacity-100 translate-y-0'
-              }`}
+            className={`hidden md:flex items-center gap-8 ${isSearchOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
             role="navigation"
             aria-label="Main navigation"
           >
@@ -210,7 +206,7 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-1.5 text-sm font-medium text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-foreground))] hover:bg-[hsl(var(--color-muted))/0.5] rounded-full transition-all"
+                className="text-sm font-medium text-[hsl(var(--color-muted-foreground))] hover:text-black transition-colors"
               >
                 {item.label}
               </Link>
@@ -328,6 +324,28 @@ export const Header: React.FC<HeaderProps> = ({ locale, showSearch = true }) => 
 
             {/* Language Selector placeholder */}
             <div id="language-selector-slot" />
+
+            {/* CTA Buttons - Recraft style */}
+            <div className="hidden md:flex items-center gap-3">
+              <Link href={`/${locale}/contact`}>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="bg-black text-white hover:bg-neutral-800 border-0 rounded-lg h-9 px-4"
+                >
+                  {t('navigation.contact') || 'Contact'}
+                </Button>
+              </Link>
+              <Link href={`/${locale}/tools`}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="bg-[hsl(var(--color-primary))] text-white hover:bg-[hsl(var(--color-primary-hover))] border-0 rounded-lg h-9 px-4"
+                >
+                  {t('navigation.tryCraft') || 'Try PDFCraft'}
+                </Button>
+              </Link>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <Button

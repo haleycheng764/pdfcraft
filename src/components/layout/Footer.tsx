@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
               className="group flex items-center gap-2.5 text-xl font-bold text-[hsl(var(--color-foreground))]"
               aria-label={`${t('brand')} - ${t('navigation.home')}`}
             >
-              <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--color-primary))] text-white shadow-md transition-transform group-hover:scale-105">
+              <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-black text-white transition-transform group-hover:opacity-90">
                 <svg
                   className="h-5 w-5"
                   viewBox="0 0 24 24"
@@ -66,13 +66,13 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             </p>
 
             <div className="flex gap-4">
-              <a href="https://github.com/PDFCraftTool/pdfcraft" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
+              <a href="https://github.com/PDFCraftTool/pdfcraft" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-black hover:text-white transition-all">
                 <Github className="w-4 h-4" />
               </a>
-              <a href="https://x.com/PDFCraftTool" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
+              <a href="https://x.com/PDFCraftTool" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-black hover:text-white transition-all">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary))] hover:text-white transition-all">
+              <a href="#" className="p-2 rounded-full bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-black hover:text-white transition-all">
                 <Mail className="w-4 h-4" />
               </a>
             </div>
@@ -86,11 +86,11 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             <ul className="flex flex-col gap-3">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[hsl(var(--color-muted-foreground))] hover:text-[hsl(var(--color-primary))] transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-[hsl(var(--color-muted-foreground))] group-hover:bg-[hsl(var(--color-primary))] transition-colors" />
+                <Link
+                  href={link.href}
+                  className="text-sm text-[hsl(var(--color-muted-foreground))] hover:text-black transition-colors flex items-center gap-2 group"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[hsl(var(--color-muted-foreground))] group-hover:bg-black transition-colors" />
                     {link.label}
                   </Link>
                 </li>
@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
                   className={`
                     px-3 py-1.5 text-sm rounded-full transition-all
                     ${isActive
-                      ? 'bg-[hsl(var(--color-primary))] text-white font-medium'
+                      ? 'bg-black text-white font-medium'
                       : 'bg-[hsl(var(--color-muted))] text-[hsl(var(--color-muted-foreground))] hover:bg-[hsl(var(--color-primary)/0.1)] hover:text-[hsl(var(--color-primary))]'
                     }
                   `}

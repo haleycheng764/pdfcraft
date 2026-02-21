@@ -1,37 +1,37 @@
 @import "tailwindcss";
 
-/* PDFCraft Design System - CSS Variables for Theming */
+/* PDFCraft Design System - Recraft-inspired: Clean, minimal, orange accent */
 :root {
-  /* Primary Colors - Deep Blue/Indigo for trust and modern tech feel */
-  --color-primary: 226 71% 55%; /* #3b82f6 - slightly more vibrant */
+  /* Primary Colors - Bright Orange for CTA (Recraft style) */
+  --color-primary: 24 100% 50%; /* #FF6B00 - vibrant orange */
   --color-primary-foreground: 0 0% 100%;
-  --color-primary-hover: 226 71% 45%;
+  --color-primary-hover: 24 100% 45%;
   
-  /* Secondary Colors - Slate for neutral elements */
-  --color-secondary: 215 20% 90%;
-  --color-secondary-foreground: 215 25% 15%;
-  --color-secondary-hover: 215 20% 80%;
+  /* Secondary Colors - Neutral gray */
+  --color-secondary: 0 0% 96%;
+  --color-secondary-foreground: 0 0% 9%;
+  --color-secondary-hover: 0 0% 90%;
   
-  /* Accent Colors - Teal/Cyan for highlights */
-  --color-accent: 172 66% 50%;
+  /* Accent Colors - Orange for highlights */
+  --color-accent: 24 100% 50%;
   --color-accent-foreground: 0 0% 100%;
   
-  /* Background Colors */
-  --color-background: 210 40% 98%; /* Slightly off-white for depth */
-  --color-foreground: 222 47% 11%;
+  /* Background Colors - Pure white */
+  --color-background: 0 0% 100%;
+  --color-foreground: 0 0% 9%;
   
   /* Muted Colors */
-  --color-muted: 210 40% 96%;
-  --color-muted-foreground: 215 16% 47%;
+  --color-muted: 0 0% 96%;
+  --color-muted-foreground: 0 0% 45%;
   
   /* Card Colors */
   --color-card: 0 0% 100%;
-  --color-card-foreground: 222 47% 11%;
+  --color-card-foreground: 0 0% 9%;
   
   /* Border Colors */
-  --color-border: 214 32% 91%;
-  --color-input: 214 32% 91%;
-  --color-ring: 226 71% 55%;
+  --color-border: 0 0% 90%;
+  --color-input: 0 0% 90%;
+  --color-ring: 24 100% 50%;
   
   /* Destructive Colors */
   --color-destructive: 0 84% 60%;
@@ -187,10 +187,10 @@ body {
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
 }
 
 .dark .glass-card {
@@ -224,7 +224,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, hsl(var(--color-primary)), hsl(var(--color-accent)));
+  background-image: linear-gradient(to right, hsl(var(--color-primary)), hsl(24 100% 60%));
 }
 
 /* Screen reader only utility */
